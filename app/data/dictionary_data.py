@@ -1,27 +1,35 @@
-import pandas as pd
-import os
+import csv
+dict_path = 'app\data\dictionary_data.csv'
 
-def load_dict_data():
-    file_path = os.path.join(os.path.dirname(__file__), 'data', dictionary_data.xlsx)
+def load_dict_data(dict_path):
+    with open(dict_path, 'r') as f:
+        data = csv.reader(f)
 
-    data = pd.read_excel(file_path)
+        dict_data = {}
+        for row in data:
+            english = row[0].strip().lower()
+            tenandi = row[1].strip().lower()
+            part = row[2]
+            definition = row[3]
+            eng_ex = row[4]
+            ten_ex = row[5]
+            
+            dict_data[english] = {
+                'tenandi': tenandi,
+                'type': part,
+                'definition': definition,
+                'english example': eng_ex,
+                'tenandi example': ten_ex
+            }
 
-    dict_data = {}
-    for ind, row in data.iterrows():
-        english = row['English'].strip().lower()
-        tenandi = row['Tenandi'].strip().lower()
-        part = row['Part of Speech']
-        definition = row.get('Definition', '')
-
-        dict_data[english_word] = {
-            'tenandi': tenandi,
-            'type': part,
-            'definition': definition
-        }
-
-        dict_data[tenandi_word] = {
-            'english': english,
-            'type': part,
-            'definition': definition
-        }
-    return dict_data
+            dict_data[tenandi] = {
+                'english': english,
+                'type': part,
+                'definition': definition,
+                'english example': eng_ex,
+                'tenandi example': ten_ex
+            }
+        return dict_data
+    
+dictionary_data = load_dict_data(dict_path)
+print(load_dict_data(dict_path))
