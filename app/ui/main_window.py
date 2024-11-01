@@ -18,7 +18,6 @@ class MainWindow(ctk.CTk):
 
         print(sw, sh)
 
-        self.search_service = SearchService(dict_data)
         dict_data = load_dict_data()
 
         # appearance
