@@ -1,7 +1,4 @@
-from data.dictionary_data import dictionary_data
+from data.dictionary_data import dictionary, conjugations
 
-def search_word(word):
-    return dictionary_data.get(word.lower())
-
-def search_keyword():
-    pass
+def search(word):
+    dictionary.get(word)

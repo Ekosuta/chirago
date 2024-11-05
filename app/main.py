@@ -1,10 +1,10 @@
 from ui.main_window import MainWindow
-import ctypes
+import customtkinter as ctk
 
 def main():
-    ctypes.windll.shcore.SetProcessDpiAwareness(2)
-    app = MainWindow()
-    app.mainloop()
+    root = ctk.CTk()
+    MainWindow(root)
+    root.mainloop()
     
 if __name__ == "__main__":
     main()
